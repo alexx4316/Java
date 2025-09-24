@@ -1,6 +1,8 @@
 package model;
 
-public class Persona {
+import Interfaces.AlumnoInterface;
+
+public abstract class Persona implements AlumnoInterface{
     private String nombre;
     private int edad;
 
@@ -24,4 +26,26 @@ public class Persona {
         this.nombre = nombre;
         this.edad = edad;
     }
+
+    @Override
+    public void mostrarInfo(Alumno alumno) {
+
+    }
+
+    @Override
+    public void agregarAsignatura(Asignatura nueva, Alumno alumno) {
+
+    }
+
+    @Override
+    public void eliminarAsignatura() {
+
+    }
+
+    @Override
+    public void editarAsignatura() {
+
+    }
+
+    abstract void agregarAsignatura();
 }

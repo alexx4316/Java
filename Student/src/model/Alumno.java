@@ -1,14 +1,13 @@
 package model;
 
-public class Alumno extends Persona {
-    private Asignatura[] asignaturas;
-    private int cantidadAsignaturas;
+public abstract class Alumno extends Persona{
+    private Asignatura[] asignaturas = new Asignatura[4];
+    private int cantidadAsignaturas = 0;
 
     public Alumno(String nombre, int edad) {
-        super(nombre,edad);
-        this.asignaturas = new Asignatura[4];
-        this.cantidadAsignaturas = 0;
+        super(nombre, edad);
     }
+
 
     public double promedio(){
         if (cantidadAsignaturas == 0) return 0;
@@ -28,28 +27,14 @@ public class Alumno extends Persona {
         return asignaturas;
     }
 
-    public String agregarAsignatura(Asignatura nueva){
-        if (cantidadAsignaturas == 4){
-            return "No puede inscribir mas materias";
-        } else {
-            for (int i = 0; i < cantidadAsignaturas ; i++) {
-                if (asignaturas[i].getNombre().equalsIgnoreCase(nueva.getNombre())){
-                    return "La asignatura ya existe";
-                }
-            }
-        }
-        asignaturas[cantidadAsignaturas] = nueva;
-        cantidadAsignaturas++;
 
-        return "Asignatura agregada correctamente";
+    @Override
+    public void eliminarAsignatura() {
+
     }
 
-    public void mostrarInfo(){
-        System.out.println("Alumno: " + getNombre() + " | Edad: " + getEdad());
-        for (int i = 0; i < cantidadAsignaturas; i++) {
-            Asignatura a = asignaturas[i];
-            System.out.println(" - " + a.getNombre() + " | Nota: " + a.getNota() + " | " + a.estado());
-        }
-        System.out.println("Promedio" + promedio());
+    @Override
+    public void agregarAsignatura(Asignatura nueva, Alumno alumno) {
+
     }
 }
