@@ -4,7 +4,7 @@ public abstract class User {
     private String name;
     private String email;
     private String password;
-    private boolean activo = true;
+    private boolean status = true;
     private String rol;
 
     // Constructor
@@ -13,7 +13,7 @@ public abstract class User {
         setEmail(email);
         setPassword(password);
         this.rol = rol;
-        this.activo = true;
+        this.status = true;
     }
 
     // Setters y Getters
@@ -51,11 +51,15 @@ public abstract class User {
         this.password = password;
     }
     public boolean isActive() {
-        return this.activo; // ✅ devuelve el valor del campo
+        return this.status; // ✅ devuelve el valor del campo
+    }
+
+    public void setStatus(boolean status){
+        this.status = status;
     }
 
     public void setActivo(boolean activo){
-        this.activo = activo;
+        this.status = activo;
     }
 
     public String getRol(){

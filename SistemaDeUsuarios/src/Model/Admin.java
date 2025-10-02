@@ -1,5 +1,7 @@
 package Model;
 
+import Dao.UserDao;
+
 import javax.swing.*;
 
 public class Admin extends User{
@@ -33,6 +35,7 @@ public class Admin extends User{
 
         if (option == JOptionPane.YES_OPTION){
             user.setActivo(false);
+            new UserDao().updateStatus(user.getEmail(), false);
             JOptionPane.showMessageDialog(null, "The user " + user.getName() + " It has been blocked");
         } else {
             JOptionPane.showMessageDialog(null, "Canceled");
@@ -50,6 +53,7 @@ public class Admin extends User{
 
         if (option == JOptionPane.YES_OPTION){
             user.setActivo(true);
+            new UserDao().updateStatus(user.getEmail(), true);
             JOptionPane.showMessageDialog(null,"The user " + user.getName() + " It has been unblocked ");
         } else {
             JOptionPane.showMessageDialog(null, "Canceled");

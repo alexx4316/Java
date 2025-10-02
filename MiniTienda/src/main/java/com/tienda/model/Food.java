@@ -1,11 +1,13 @@
 package main.java.com.tienda.model;
 
+import java.math.BigDecimal;
+
 public class Food extends Article{
     private int daysToExpire;
 
     // Traemos los datos del padre le agregamos diasParaCaducar
-    public Food(String name, String code, double price, int stock, String daysToExpire) {
-        super(name, code, price, stock);
+    public Food(String name, BigDecimal price, int stock, int daysToExpire) {
+        super(name, price, stock);
         this.daysToExpire = daysToExpire;
     }
 
