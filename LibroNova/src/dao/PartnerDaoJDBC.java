@@ -17,11 +17,13 @@ public class PartnerDaoJDBC implements PartnerDao{
     private final String SQL_GET_ALL = "SELECT * FROM partners";
     private final String SQL_DELETE = "DELETE FROM partners WHERE id = ?";
 
+    // Traemos la conexion
     private Connection connection;
     public PartnerDaoJDBC(Connection connection){
         this.connection = connection;
     }
 
+    // Crear socio
     @Override
     public void create(Partner partner) throws SQLException {
         try(PreparedStatement ps = connection.prepareStatement(SQL_CREATE)){
@@ -36,6 +38,7 @@ public class PartnerDaoJDBC implements PartnerDao{
         }
     }
 
+    // Obtener socio por id
     @Override
     public Partner getById(int id) throws SQLException {
         try(PreparedStatement ps = connection.prepareStatement(SQL_GET_BY_ID)){
@@ -57,6 +60,7 @@ public class PartnerDaoJDBC implements PartnerDao{
         return null;
     }
 
+    // Actualizar socio
     @Override
     public void update(Partner partner) throws SQLException {
         try(PreparedStatement ps = connection.prepareStatement(SQL_UPDATE)){
@@ -72,6 +76,7 @@ public class PartnerDaoJDBC implements PartnerDao{
         }
     }
 
+    // Eliminar socio
     @Override
     public void delete(int id) throws SQLException {
         try(PreparedStatement ps = connection.prepareStatement(SQL_DELETE)){
@@ -82,6 +87,7 @@ public class PartnerDaoJDBC implements PartnerDao{
         }
     }
 
+    // Listar todoso los socios
     @Override
     public List<Partner> getAll() throws SQLException {
         List<Partner> partners = new ArrayList<>();

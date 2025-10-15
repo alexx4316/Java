@@ -27,6 +27,7 @@ public class LoanDaoJDBC implements LoanDao {
     public LoanDaoJDBC() {
     }
 
+    // Crear un nuevo prestamo
     @Override
     public void create(Loan loan) throws SQLException {
         try (PreparedStatement ps = connection.prepareStatement(SQL_CREATE)) {
@@ -44,6 +45,7 @@ public class LoanDaoJDBC implements LoanDao {
         }
     }
 
+    // Traer prestamo por id
     @Override
     public Loan getById(int id) throws SQLException {
         try (PreparedStatement ps = connection.prepareStatement(SQL_GET_BY_ID)) {
@@ -71,6 +73,7 @@ public class LoanDaoJDBC implements LoanDao {
         }
     }
 
+    // Actualizar prestamo
     @Override
     public void update(Loan loan) throws SQLException {
         try (PreparedStatement ps = connection.prepareStatement(SQL_UPDATE)) {
@@ -85,6 +88,7 @@ public class LoanDaoJDBC implements LoanDao {
         }
     }
 
+    // Eliminar prestamo
     @Override
     public void delete(int id) throws SQLException {
         try (PreparedStatement ps = connection.prepareStatement(SQL_DELETE)) {
@@ -95,6 +99,7 @@ public class LoanDaoJDBC implements LoanDao {
         }
     }
 
+    // Listar todos los prestamos
     @Override
     public List<Loan> getAll() throws SQLException {
         List<Loan> loans = new ArrayList<>();
@@ -122,6 +127,8 @@ public class LoanDaoJDBC implements LoanDao {
         return loans;
     }
 
+    // Metodos privados
+    // Buscar libro por id
     private Book getBookById(int bookId) throws SQLException {
         try (PreparedStatement ps = connection.prepareStatement(SQL_FIND_BOOK_BY_ID)) {
             ps.setInt(1, bookId);
@@ -143,6 +150,7 @@ public class LoanDaoJDBC implements LoanDao {
         }
     }
 
+    // Obtener partner por id
     private Partner getPartnerById(int partnerId) throws SQLException {
         try (PreparedStatement ps = connection.prepareStatement(SQL_FIND_PARTNER_BY_ID)) {
             ps.setInt(1, partnerId);
@@ -153,7 +161,6 @@ public class LoanDaoJDBC implements LoanDao {
                         rs.getString("name"),
                         rs.getString("email"),
                         rs.getString("role"),
-                        rs.getString("password"),
                         rs.getBoolean("status"),
                         rs.getDate("register_date")
                 );

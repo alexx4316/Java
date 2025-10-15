@@ -4,6 +4,7 @@ import controller.UserController;
 import model.User;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class UserView {
 
@@ -14,8 +15,8 @@ public class UserView {
     }
 
 
-    public void showMenu() {
-        String[] options = {"Register User", "Login", "Exit"};
+    public void showMenu() throws SQLException {
+        String[] options = {"Register User", "Exit"};
         int choice;
 
         do {
@@ -32,12 +33,11 @@ public class UserView {
 
             switch (choice) {
                 case 0 -> registerUser();
-                case 1 -> loginUser();
-                case 2 -> JOptionPane.showMessageDialog(null, "Exiting user menu...");
+                case 1 -> JOptionPane.showMessageDialog(null, "Exiting user menu...");
                 default -> {}
             }
 
-        } while (choice != 2 && choice != JOptionPane.CLOSED_OPTION);
+        } while (choice != 1 && choice != JOptionPane.CLOSED_OPTION);
     }
 
     private void registerUser() {
@@ -56,17 +56,5 @@ public class UserView {
         user.setPassword(password);
 
         userController.createUser(user);
-    }
-
-    private void loginUser() {
-        String email = JOptionPane.showInputDialog("Enter email:");
-        String password = JOptionPane.showInputDialog("Enter password:");
-
-        if (email == null || password == null || email.isBlank() || password.isBlank()) {
-            JOptionPane.showMessageDialog(null, "All fields are required.");
-            return;
-        }
-
-        userController.login(email, password);
     }
 }

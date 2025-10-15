@@ -6,6 +6,7 @@ public class Partner extends User {
     private boolean status;
     private Date register_date;
 
+    // Constructores
     public Partner() {}
 
     public Partner(int id, String name, String email, String role, boolean status, Date register_date) {
@@ -14,7 +15,13 @@ public class Partner extends User {
         this.register_date = register_date;
     }
 
+    public Partner(String name, String email, String role, boolean status, Date register_date) {
+        super(name, email, role);
+        this.status = status;
+        this.register_date = register_date;
+    }
 
+    // Getters y Setters
     public boolean isStatus() {
         return status;
     }

@@ -1,5 +1,6 @@
 package service;
 
+import dao.DBConnection;
 import dao.LoanDao;
 import dao.LoanDaoJDBC;
 import errors.BadRequestException;
@@ -8,6 +9,7 @@ import errors.NotFoundException;
 import model.Loan;
 import util.ValidatorUtil;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,7 +17,17 @@ import java.util.List;
 
 public class LoanService {
 
-    private final LoanDao loanDao = new LoanDaoJDBC();
+    private final LoanDao loanDao;
+
+    // Traemos la conexion
+    public LoanService() {
+        try {
+            Connection connection = DBConnection.getConnection();
+            this.loanDao = new LoanDaoJDBC(connection);
+        } catch (Exception e) {
+            throw new RuntimeException("Error connecting to database: " + e.getMessage());
+        }
+    }
 
     // Crear un nuevo préstamo
     public void createLoan(Loan loan) throws SQLException, BadRequestException, InactivePartnerException {

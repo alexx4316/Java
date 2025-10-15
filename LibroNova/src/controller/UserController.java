@@ -25,18 +25,9 @@ public class UserController {
     }
 
     // Iniciar sesión
-    public void login(String email, String password) {
-        try {
-            User user = userService.login(email, password);
-            if (user != null) {
-                JOptionPane.showMessageDialog(null, "Welcome, " + user.getName() + "!");
-            } else {
-                throw new UnauthorizedException("Incorrect credentials.");
-            }
-        } catch (UnauthorizedException e) {
-            JOptionPane.showMessageDialog(null, "Authentication error: " + e.getMessage());
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Database error: " + e.getMessage());
-        }
+    public User login(String email, String password) throws SQLException, BadRequestException, UnauthorizedException {
+        User user = userService.login(email, password);
+        JOptionPane.showMessageDialog(null, "Welcome, " + user.getName() + "!");
+        return user;
     }
 }

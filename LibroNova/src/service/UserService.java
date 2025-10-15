@@ -1,5 +1,7 @@
 package service;
 
+import dao.BookDaoJDBC;
+import dao.DBConnection;
 import dao.UserDao;
 import dao.UserDaoJDBC;
 import errors.BadRequestException;
@@ -7,11 +9,20 @@ import errors.UnauthorizedException;
 import model.User;
 import util.ValidatorUtil;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class UserService {
 
-    private final UserDao userDao = new UserDaoJDBC();
+    private final UserDao userDao;
+    public UserService() {
+        try {
+            Connection connection = DBConnection.getConnection();
+            this.userDao = new UserDaoJDBC(connection);
+        } catch (Exception e) {
+            throw new RuntimeException("Error connecting to database: " + e.getMessage());
+        }
+    }
 
     // Crear un nuevo usuario
     public void createUser(User user) throws SQLException, BadRequestException {

@@ -2,6 +2,7 @@ package service;
 
 import dao.BookDao;
 import dao.BookDaoJDBC;
+import dao.DBConnection;
 import errors.BadRequestException;
 import errors.ConflictException;
 import errors.NotFoundException;
@@ -15,8 +16,9 @@ import java.util.List;
 public class BookService {
     private final BookDao bookDao;
 
-    public BookService(Connection connection){
-        this.bookDao = new BookDaoJDBC(connection);
+    // Traemos la conexion
+    public BookService(Connection connection) {
+            this.bookDao = new BookDaoJDBC(connection);
     }
 
     // Crear libro con validaciones

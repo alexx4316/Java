@@ -41,8 +41,9 @@ public class PartnerController {
                 sb.append("ID: ").append(p.getId())
                         .append(" | Name: ").append(p.getName())
                         .append(" | Email: ").append(p.getEmail())
-                        .append(" | Phone: ").append(p.getPhone())
-                        .append(" | Address: ").append(p.getAddress())
+                        .append(" | Role: ").append(p.getRole())
+                        .append(" | Status: ").append(p.isStatus())
+                        .append(" | Register date: ").append(p.getRegister_date())
                         .append("\n");
             }
             JOptionPane.showMessageDialog(null, sb.toString());

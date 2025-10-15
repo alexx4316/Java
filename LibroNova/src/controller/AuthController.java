@@ -33,7 +33,7 @@ public class AuthController {
         }
     }
 
-    private void showUserMenu(){
+    private void showUserMenu() throws SQLException {
         UserController userController = new UserController();
         UserView userView = new UserView(userController);
         userView.showMenu();

@@ -42,7 +42,7 @@ public class PartnerView {
                         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
                         Date register_date = sdf.parse(dateStr);
 
-                        Partner partner = new Partner(0, name, email, role, status, register_date);
+                        Partner partner = new Partner(name, email, role, status, register_date);
                         controller.createPartner(partner);
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
@@ -55,13 +55,17 @@ public class PartnerView {
                         String name = JOptionPane.showInputDialog("Enter Partner Name:");
                         String email = JOptionPane.showInputDialog("Enter Partner Email:");
                         String role = JOptionPane.showInputDialog("Enter Partner Role:");
-                        String status = JOptionPane.showInputDialog("Enter Partner Status (True/False):");
-                        String register_date = JOptionPane.showInputDialog("Enter Partner register date:");
+                        String statusStr= JOptionPane.showInputDialog("Enter Partner Status (True/False):");
+                        String dateStr = JOptionPane.showInputDialog("Enter Partner register date:");
+
+                        boolean status = Boolean.parseBoolean(statusStr);
+                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                        Date register_date = sdf.parse(dateStr);
 
                         Partner partner = new Partner(id, name, email, role, status, register_date);
                         controller.updatePartner(partner);
-                    } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null, "ID must be a number.");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
                     }
                 }
 
@@ -74,7 +78,7 @@ public class PartnerView {
                     }
                 }
 
-                case "0" -> {} // salir
+                case "0" -> {}
 
                 default -> JOptionPane.showMessageDialog(null, "Invalid option.");
             }
